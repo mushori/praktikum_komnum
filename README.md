@@ -118,8 +118,9 @@ plt.show()
 ```
 Kemudian di run, nanti akan muncul `msukkan hasil akar dari program C++ tadi: `, kita bisa masukan nilai `0.682292` tadi ke situ, kemudian di-enter, nanti akan muncul sebuah grafik seperti ini,
 
-### Gambar grafiknya
+![image.png](https://github.com/mushori/praktikum_komnum/blob/main/image.png)
 
+---
 ## Praktikum 2
 Salah satu kelemahan dari metode Trapeziodal adalah kita harus menggunakan jumlah interval yang besar untuk memperoleh akurasi yang diharapkan. Buatlah sebuah program komputer untuk menjelaskan bagaimana metode Integrasi Romberg dapat mengatasi kelemahana tersebut.
 
