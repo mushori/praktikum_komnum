@@ -125,6 +125,101 @@ Kemudian di run, nanti akan muncul `msukkan hasil akar dari program C++ tadi: `,
 Salah satu kelemahan dari metode Trapeziodal adalah kita harus menggunakan jumlah interval yang besar untuk memperoleh akurasi yang diharapkan. Buatlah sebuah program komputer untuk menjelaskan bagaimana metode Integrasi Romberg dapat mengatasi kelemahana tersebut.
 
 ### Kode
+Romberg ini hanya membutuhkan satu program untuk mengatasi dan membuat kesimpulan.
+```cpp
+#include <iostream>
+#include <cmath>
+#include <iomanip>
 
+using namespace std;
 
-## Praktikum 2
+// Fungsi contoh
+double f(double x) {
+    return exp(-x * x);
+}
+
+// Metode Trapezoidal
+double trapezoidal(double a, double b, int n) {
+    double h = (b - a) / n;
+    double sum = 0.5 * (f(a) + f(b));
+
+    for (int i = 1; i < n; i++) {
+        sum += f(a + i * h);
+    }
+
+    return sum * h;
+}
+
+// Metode Integrasi Romberg
+double romberg(double a, double b, int maxIterations) {
+    double R[maxIterations + 1][maxIterations + 1];
+
+    // Langkah pertama: hitung R[0][0]
+    R[0][0] = trapezoidal(a, b, 1);
+
+    for (int i = 1; i <= maxIterations; i++) {
+        // Hitung R[i][0] dengan trapezoidal
+        R[i][0] = trapezoidal(a, b, pow(2, i));
+
+        // Hitung R[i][j] untuk j = 1 hingga i
+        for (int j = 1; j <= i; j++) {
+            R[i][j] = (pow(4, j) * R[i][j - 1] - R[i - 1][j - 1]) / (pow(4, j) - 1);
+        }
+    }
+
+    // Hasil akhir :
+    return R[maxIterations][maxIterations];
+}
+
+int main() {
+    double a, b;
+    int maxIterations;
+
+    cout << "fungsi sebagai contoh yakni : e^(-x^2)\n";
+    cout << "Masukkan batas bawah (a): ";
+    cin >> a;
+    cout << "Masukkan batas atas (b): ";
+    cin >> b;
+    cout << "Masukkan jumlah iterasi maksimum (misalnya 4 atau 5): ";
+    cin >> maxIterations;
+
+    // Untuk pembandingan, hitung trapezoidal dengan interval 2^maxIterations (jumlah interval besar)
+    int n = (int)pow(2, maxIterations);
+
+    double trapezoid_result = trapezoidal(a, b, n);
+    double romberg_result = romberg(a, b, maxIterations);
+
+    cout << fixed << setprecision(8);
+    cout << "\nHasil integrasi menggunakan Metode Trapezoidal dengan n = " << n << " interval: " << trapezoid_result << endl;
+    cout << "Hasil integrasi menggunakan Metode Romberg dengan maxIteration = " << maxIterations << ": " << romberg_result << endl;
+
+    cout << "\nKesimpulan: " << endl;
+    cout << "- Metode Romberg memberikan hasil yang lebih akurat dengan jumlah iterasi yang relatif kecil." << endl;
+    cout << "- Metode Trapezoidal membutuhkan jumlah interval yang besar (dalam contoh n = " << n << ") untuk mendekati akurasi yang sama." << endl;
+    cout << "- Dengan Romberg, akurasi meningkat lebih cepat dan efisien mengatasi kelemahan Trapezoidal." << endl;
+
+    return 0;
+}
+```
+Ketika dirun dan misal kita memasukkan angka batas ataa (a) = 1, batas bawahnya (b) = 2, dan jumlah iterasi maksimumnya = 5. Maka akan menghasilkan output seperti ini,
+```cpp
+fungsi sebagai contoh yakni : e^(-x^2)
+Masukkan batas bawah (a): 1
+Masukkan batas atas (b): 2
+Masukkan jumlah iterasi maksimum (misalnya 4 atau 5): 5
+
+Hasil integrasi menggunakan Metode Trapezoidal dengan n = 32 interval: 0.13531117
+Hasil integrasi menggunakan Metode Romberg dengan maxIteration = 5: 0.13525726 
+
+Kesimpulan:
+- Metode Romberg memberikan hasil yang lebih akurat dengan jumlah iterasi yang relatif kecil.
+- Metode Trapezoidal membutuhkan jumlah interval yang besar (dalam contoh n = 32) untuk mendekati akurasi yang sama.
+- Dengan Romberg, akurasi meningkat lebih cepat dan efisien mengatasi kelemahan Trapezoidal.
+```
+Dan dari hal tersebut kita bisa langsung mendapatkan sebuah kesimpulan seperti yang disebutkan di dalam output programnya,
+1. Metode Romberg memberikan hasil yang lebih akurat dengan jumlah iterasi yang relatif kecil.
+2. Metode Trapezoidal membutuhkan jumlah interval yang besar (dalam contoh n = 32) untuk mendekati akurasi yang sama.
+3. Dengan Romberg, akurasi meningkat lebih cepat dan efisien mengatasi kelemahan Trapezoidal.
+
+Cukup sekian dari kami, kurang lebihnya mohon maaf, terima kasih!👋
+
