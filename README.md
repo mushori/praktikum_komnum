@@ -1,4 +1,4 @@
-###Laporan Praktikum Komputasi Numerik
+### Laporan Praktikum Komputasi Numerik
 |    NRP     |      Name      |
 | :--------: | :------------: |
 | 5025241197 | Syah Amin Zikri            |
