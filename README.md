@@ -5,7 +5,7 @@
 | 5025241171 | Muhammad Sholihuddin Rizky |
 
 ## Praktikum 1
-Anda sudah mengerti algortima pemrosesan metode *Regula Falsi*, dan anda sudah memahami cara kerjanya. Sekarang anda tinggal mengimplementasikan algoritma tersebut menjadi sebuah program komputer metode *Regula Falsi (yang dapat menampilkan proses iteratif numerik, dengan lengkap grafik fungsinya).
+Anda sudah mengerti algortima pemrosesan metode *Regula Falsi*, dan anda sudah memahami cara kerjanya. Sekarang anda tinggal mengimplementasikan algoritma tersebut menjadi sebuah program komputer metode *Regula Falsi* (yang dapat menampilkan proses iteratif numerik, dengan lengkap grafik fungsinya).
 
 ### Kode 
 Pertama, untuk Regula Falsi ini kami membuat dua program, yang pertama untuk menghitung dan yang kedua untuk membuat grafik visualnya. 
